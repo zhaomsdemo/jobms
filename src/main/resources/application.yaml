@@ -1,0 +1,23 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+    show-sql: true
+    database-platform:
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  servlet:
+    context-path: /api
+  port: 8080
+logging:
+  file:
+    path: /log
+    name: jobms.log
+  level:
+    org:
+      springframework:
+        web: info
+      hibernate: info
