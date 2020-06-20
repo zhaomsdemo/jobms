@@ -4,6 +4,7 @@ import com.zjh.jobms.dto.JobPositionDto;
 import com.zjh.jobms.entity.JobPosition;
 import com.zjh.jobms.repository.JobOpportunityRepository;
 import com.zjh.jobms.util.JobPositionConverter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -12,13 +13,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service("JobPositionService")
+@Slf4j
 public class JobPositionServiceImpl implements JobPositionService {
 
     @Autowired
