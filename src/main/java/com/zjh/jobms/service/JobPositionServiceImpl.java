@@ -2,6 +2,7 @@ package com.zjh.jobms.service;
 
 import com.zjh.jobms.dto.JobPositionDto;
 import com.zjh.jobms.entity.JobPosition;
+import com.zjh.jobms.exception.NotFoundException;
 import com.zjh.jobms.repository.JobOpportunityRepository;
 import com.zjh.jobms.util.JobPositionConverter;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,15 @@ public class JobPositionServiceImpl implements JobPositionService {
 
     @Autowired
     private JobOpportunityRepository repository;
+
+    @Override
+    public JobPositionDto getJobById(String jobId){
+        JobPosition jobPosition = repository.getOne(jobId);
+        if(jobPosition == null) {
+            throw new NotFoundException("Job is not exist");
+        }
+        return JobPositionConverter.toJobPositionDto(jobPosition);
+    }
 
     @Override
     public List<JobPositionDto> getJobPositionsByTitle(String title, int pageNum, int pageSize) {
@@ -75,5 +85,13 @@ public class JobPositionServiceImpl implements JobPositionService {
         jobPosition = repository.save(jobPosition);
         JobPositionDto dto = JobPositionConverter.toJobPositionDto(jobPosition);
         return dto;
+    }
+
+    @Override
+    public JobPositionDto updateJob(JobPositionDto jobPositionDto) {
+        JobPosition jobPosition = JobPositionConverter.toJobEntity(jobPositionDto);
+        jobPosition = repository.save(jobPosition);
+
+        return JobPositionConverter.toJobPositionDto(jobPosition);
     }
 }
