@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.zjh</groupId>
     <artifactId>jobms</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>jobms</name>
     <description>猎头工作职位管理系统</description>
 
